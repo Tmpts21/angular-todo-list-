@@ -1,0 +1,77 @@
+<div class="card mt-5 ">
+    <div class="card-header font-weight-bold">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{sucessMessage}}
+        </div>
+      <span style="font-size:24px">
+        {{header}}
+      </span> 
+        <app-addtodo class="float-right"></app-addtodo>
+
+    </div>
+    <div class="card-body">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-sm"><h4 class="font-weight-bold">Description</h4></div>
+          <div class="col-sm"><h4 class="font-weight-bold">Status</h4></div>
+          <div class="col-sm"><h4 class="font-weight-bold">due</h4></div>
+          <div class="col-sm"><h4 class="font-weight-bold">Action</h4></div>
+        </div>
+        <hr>
+      </div>
+  
+      <div  *ngFor="let todo of todos let i = index" >
+        <div class="container">
+          
+          <div class="row mt-4 text-center">
+              <div class="col-sm">{{todo.body}}</div>
+              <div class="col-sm">{{todo.status}}</div>
+              <div class="col-sm">{{todo.due}}</div>
+              <div class="col-sm">
+                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#update" (click)="setId(todo.id.toString())" > Update Status </button>
+              </div>
+  
+          </div>
+
+        </div>
+
+        <!-- Modal -->
+          <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                  <div class="input-group-prepend">
+                    <label class="input-group-text mb-2" for="inputGroupSelect01">Set status</label>
+                  </div>
+                  <select class="custom-select" id="inputGroupSelect01" [(ngModel)] ="status" >
+                    <option value="pending" selected>pending</option>
+                    <option value="done">done</option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="onSave()">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+
+      </div>
+        
+
+
+
+          
+    </div>
+   
+      
+
+  </div>
